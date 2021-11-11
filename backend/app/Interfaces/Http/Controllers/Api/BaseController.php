@@ -8,4 +8,6 @@ use Interfaces\Http\Traits\Response;
 class BaseController extends Controller
 {
     use Response;
+
+    const PER_PAGE = 20;
 }

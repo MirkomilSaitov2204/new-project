@@ -30,7 +30,7 @@ class PermissionController extends BaseController
 
     public function index()
     {
-        $permissions = $this->permissionServices->permissions()->paginate(10);
+        $permissions = $this->permissionServices->permissions()->paginate(self::PER_PAGE);
         return $this->send([
             'users' => new PermissionResourceCollection($permissions)
         ]);
