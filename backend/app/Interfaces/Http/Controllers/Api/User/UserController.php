@@ -2,16 +2,17 @@
 
 namespace Interfaces\Http\Controllers\Api\User;
 
+use App\Domain\User\Resources\UserResourceCollection;
 use Domain\User\Entities\User;
-use Interfaces\Http\Controllers\Controller;
+use App\Interfaces\Http\Controllers\Api\BaseController;
 
-class UserController extends Controller
+class UserController extends BaseController
 {
     public function index()
     {
-        User::all();
-        return response()->json([
-            'data'=> User::all()
+        $users = User::paginate(10);
+        return $this->send([
+            'users' => new UserResourceCollection($users)
         ]);
     }
 }
