@@ -2,7 +2,7 @@
 
 namespace Interfaces\Http\Controllers\Api\User;
 
-use App\Domain\User\Resources\UserResourceCollection;
+use App\Domain\User\Resources\PermissionResourceCollection;
 use Domain\User\Entities\User;
 use App\Interfaces\Http\Controllers\Api\BaseController;
 
@@ -12,7 +12,7 @@ class UserController extends BaseController
     {
         $users = User::paginate(10);
         return $this->send([
-            'users' => new UserResourceCollection($users)
+            'users' => new PermissionResourceCollection($users)
         ]);
     }
 }

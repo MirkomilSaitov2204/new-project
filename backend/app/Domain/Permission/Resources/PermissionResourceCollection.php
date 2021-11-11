@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Domain\User\Resources;
+namespace Domain\Permission\Resources;
 
 use App\Infrastructure\Interfaces\BaseResourceCollection;
 
-class UserResourceCollection extends BaseResourceCollection
+class PermissionResourceCollection extends BaseResourceCollection
 {
 
-    public $collects = 'App\Domain\User\Resources\PermissionResource';
+    public $collects = 'Domain\Permission\Resources\PermissionResource';
 
     /**
      * Transform the resource collection into an array.

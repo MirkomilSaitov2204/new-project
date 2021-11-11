@@ -4,6 +4,8 @@ namespace Interfaces\Http\Controllers\Api\Permission;
 
 use App\Interfaces\Http\Controllers\Api\BaseController;
 
+use Domain\Permission\Entities\Permission;
+use Domain\Permission\Resources\PermissionResourceCollection;
 use Domain\Permission\Services\PermissionService;
 use Domain\Permission\Repositories\PermissionRepository;
 use Illuminate\Http\Request;
@@ -23,6 +25,15 @@ class PermissionController extends BaseController
 //        $this->middleware('permission:permission_create', ['only' => ['create, store']]);
 //        $this->middleware('permission:permission_update', ['only' => ['update, edit']]);
 //        $this->middleware('permission:permission_delete', ['only' => ['delete']]);
+    }
+
+
+    public function index()
+    {
+        $permissions = $this->permissionServices->permissions()->paginate(10);
+        return $this->send([
+            'users' => new PermissionResourceCollection($permissions)
+        ]);
     }
 
 
