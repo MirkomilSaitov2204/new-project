@@ -18,7 +18,11 @@ use Illuminate\Support\Facades\Route;
 //});
 
 
+Route::apiResource('permissions', \Interfaces\Http\Controllers\Api\Permission\PermissionController::class);
 
-Route::group(['namespace' => 'App/Interfaces/HTTP/Controllers/Api'], function ($router)   {
-    registerRoutes('App/Interfaces/Http/Controllers/Api');
-});
+//Route::group(['namespace' => 'App/Interfaces/Http/Controllers/Api'], function ($router)   {
+////    registerRoutes('App/Interfaces/Http/Controllers/Api');
+//
+//
+//
+//});
