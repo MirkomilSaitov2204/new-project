@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @author Mirkomil Saitov <mirkomilmirabdullaevich@gmail.com>
  * @phone +998903248563
+ * @copyright 2021.11.23
  */
 interface PermissionInterface
 {

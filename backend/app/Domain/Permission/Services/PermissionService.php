@@ -2,6 +2,7 @@
 
 namespace Domain\Permission\Services;
 
+use Application\Request\Permission\FilterRequest;
 use Domain\Permission\Entities\Permission;
 
 
@@ -37,7 +38,7 @@ class PermissionService
     /**
      * @return mixed
      */
-    public function permissionParent()
+    public function permissionParent(): Permission
     {
         return $this->permissions()->where('parent_id', 0)->get();
     }
@@ -46,8 +47,32 @@ class PermissionService
      * @param string $data
      * @return object
      */
-    public function getPermissionByName(string $data): object
+    public function getPermissionByName(string $name): object
     {
-        return $this->permissions()->where('name', $data)->first();
+        return $this->permissions()->where('name', $name)->first();
+    }
+
+    /**
+     * @param FilterRequest $request
+     * @param $permissions
+     * @return object
+     */
+    public function filter(FilterRequest $request, $permissions): object
+    {
+        $permissions= $request->name
+            ? $permissions->where('name','LIKE', '%'.$request->name.'%')
+            : $permissions;
+
+
+        $permissions= $request->is_active
+            ? $permissions->where('is_active',$request->is_active)
+            : $permissions;
+
+
+        $permissions= $request->parent_id
+            ? $permissions->where('parent_id',$request->parent_id)
+            : $permissions;
+
+        return $permissions;
     }
 }

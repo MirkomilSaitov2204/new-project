@@ -2,13 +2,15 @@
 
 namespace Interfaces\Http\Controllers\Api\Permission;
 
-use App\Interfaces\Http\Controllers\Api\BaseController;
-
-use Domain\Permission\Entities\Permission;
-use Domain\Permission\Resources\PermissionResourceCollection;
+use Illuminate\Http\JsonResponse;
+use Application\Request\Permission\StoreRequest;
+use Application\Request\Permission\UpdateRequest;
 use Domain\Permission\Services\PermissionService;
+use Application\Request\Permission\FilterRequest;
+use Domain\Permission\Resources\PermissionResource;
+use App\Interfaces\Http\Controllers\Api\BaseController;
 use Domain\Permission\Repositories\PermissionRepository;
-use Illuminate\Http\Request;
+use Domain\Permission\Resources\PermissionResourceCollection;
 
 class PermissionController extends BaseController
 {
@@ -16,6 +18,10 @@ class PermissionController extends BaseController
     private $permissionRepositories;
     private $permissionServices;
 
+    /**
+     * @param PermissionRepository $permissionRepositories
+     * @param PermissionService $permissionServices
+     */
     public function __construct(PermissionRepository $permissionRepositories, PermissionService  $permissionServices)
     {
         $this->permissionRepositories   = $permissionRepositories;
@@ -28,32 +34,69 @@ class PermissionController extends BaseController
     }
 
 
-    public function index()
+    /**
+     * @param FilterRequest $request
+     * @return JsonResponse
+     */
+    public function index(FilterRequest $request): JsonResponse
     {
-        $permissions = $this->permissionServices->permissions()->paginate(self::PER_PAGE);
-        return $this->send([
-            'users' => new PermissionResourceCollection($permissions)
-        ]);
+        try {
+            $permissions = $this->permissionServices->permissions();
+            $permissions = $this->permissionServices->filter($request, $permissions);
+            $permissions = $permissions->paginate(self::PER_PAGE);
+
+            return $this->send([
+                'permissions' => new PermissionResourceCollection($permissions)
+            ], __('app.controller.permission.index.success'),self::SUCCESS_CODE);
+
+        }catch (\JsonException $exception){
+            return $this->error($exception, __('app.controller.permission.index.error'),self::UNPROCC_CODE);
+        }
     }
 
-
-    public function store(Request $request)
+    /**
+     * @param StoreRequest $request
+     * @return JsonResponse
+     */
+    public function store(StoreRequest $request): JsonResponse
     {
-       $permission =  $this->permissionRepositories->storePermission($request->all());
+        try {
+            $permission =  $this->permissionRepositories->storePermission($request->validated());
 
-        return $this->send([
-            'permission' => $permission
-        ],'Success',200);
+            return $this->send([
+                'permission' => new PermissionResource($permission)
+            ],__('app.controller.permission.store.success'),self::SUCCESS_CODE);
+        }catch (\JsonException $exception){
+            return $this->error($exception, __('app.controller.permission.store.error'),self::UNPROCC_CODE);
+        }
     }
 
-    public function destroy($name)
+    /**
+     * @param UpdateRequest $request
+     * @param string $name
+     * @return JsonResponse
+     */
+    public function update(UpdateRequest $request, string $name): JsonResponse
     {
-        $this->permissionRepositories->deletePermission($name);
-
-
-        return $this->send([],
-            'deleted',200
-        );
+        try {
+           $this->permissionRepositories->updatePermission($request->validated(), $name);
+            return $this->send([],__('app.controller.permission.update.success'),self::SUCCESS_CODE);
+        }catch (\JsonException $exception){
+            return $this->error($exception, __('app.controller.permission.update.error'),self::UNPROCC_CODE);
+        }
     }
 
+    /**
+     * @param string $name
+     * @return JsonResponse
+     */
+    public function destroy(string $name): JsonResponse
+    {
+        try {
+            $this->permissionRepositories->deletePermission($name);
+            return $this->send([],__('app.controller.permission.delete.success'),self::SUCCESS_CODE);
+        }catch (\JsonException $exception){
+            return $this->error($exception, __('app.controller.permission.delete.error'),self::UNPROCC_CODE);
+        }
+    }
 }

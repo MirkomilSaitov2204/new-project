@@ -41,7 +41,7 @@ class PermissionRepository implements PermissionInterface
             $permissions = $this->permissionServices->permissions()->create($data);
             return $permissions;
         } catch (\Throwable $exception) {
-            dd($exception);
+            return $exception;
         }
     }
 
@@ -60,7 +60,7 @@ class PermissionRepository implements PermissionInterface
                 return $permission->update($data);
             }
         } catch (\Throwable $exception) {
-            dd($exception);
+            return $exception;
         }
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\Permission\Resources;
+namespace Domain\Permission\Resources\Inventory;
 
 use Infrastructure\Interfaces\BaseResource;
 
@@ -12,11 +12,6 @@ class PermissionResource extends BaseResource
         return [
             self::ID         => $this->id,
             self::NAME       => $this->name,
-            self::IS_ACTIVE  => $this->is_active ? true : false,
-
-            'parent_id'      => $this->parent_id,
-            'children'       => new \Domain\Permission\Resources\Inventory\PermissionResourceCollection($this->children),
-
             self::CREATED_AT => $this->dateFormatters($this->created_at),
             self::UPDATED_AT => $this->dateFormatters($this->updated_at),
         ];

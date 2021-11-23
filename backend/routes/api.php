@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::group(['prefix' => 'backend', 'namespace' => '\Interfaces\Http\Controllers\Api'], function () {
-    Route::apiResource('permissions', '\Permission\PermissionController');
+    Route::apiResource('permissions', 'Permission\PermissionController');
     Route::apiResource('users' , 'User\UserController');
 
 });
