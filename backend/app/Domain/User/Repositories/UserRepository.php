@@ -4,6 +4,7 @@ namespace Domain\User\Repositories;
 
 use Domain\User\Services\UserService;
 use App\Domain\User\Interfaces\UserInterface;
+use Illuminate\Database\Eloquent\Model;
 
 class UserRepository implements UserInterface
 {
@@ -19,7 +20,7 @@ class UserRepository implements UserInterface
      * @param array $data
      * @return array
      */
-    public function storeUser(array $data): array
+    public function storeUser(array $data): Model
     {
         try {
 
@@ -45,7 +46,7 @@ class UserRepository implements UserInterface
      * @param $id
      * @return mixed
      */
-    public function deleteUser($id)
+    public function deleteUser($id): Model
     {
         try {
 

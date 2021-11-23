@@ -1,9 +1,16 @@
 <?php
 
-namespace App\Domain\User\Resources;
+namespace Domain\User\Resources;
 
 use Infrastructure\Interfaces\BaseResource;
 
+/**
+ * @package Domain\User\Resources;
+ * @class UserResource
+ *
+ * @author <mirkomilmirabdullaevich@gmail.com>
+ * @copyright 2021.11.23
+ */
 class UserResource extends BaseResource
 {
 

@@ -2,14 +2,23 @@
 
 namespace App\Domain\User\Interfaces;
 
+use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @interface UserInterface
+ * @package Domain\User\Interfaces
+ *
+ *
+ * @author Mirkomil Saitov <mirkomilmirabdullaevich@gmail.com>
+ * @phone +998903248563
+ */
 interface UserInterface
 {
     /**
      * @param array $data
-     * @return array
+     * @return Model
      */
-    public function storeUser(array $data): array;
+    public function storeUser(array $data): Model;
 
 
     /**
@@ -22,7 +31,7 @@ interface UserInterface
 
     /**
      * @param int $id
-     * @return mixed
+     * @return Model
      */
-    public function deleteUser(int $id);
+    public function deleteUser(int $id): Model;
 }

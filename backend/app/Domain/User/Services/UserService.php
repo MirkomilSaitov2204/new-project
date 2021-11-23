@@ -2,6 +2,7 @@
 
 namespace Domain\User\Services;
 
+use Application\Request\User\FilterRequest;
 use Domain\User\Entities\User;
 
 class UserService
@@ -23,6 +24,14 @@ class UserService
     public function users(): User
     {
         return $this->users;
+    }
+
+    public function filter(FilterRequest $request, $users)
+    {
+        $users = $request->email
+            ? $users->where('email', 'LIKE', '%'.$request->email.'%')
+            :$users;
+        return $users;
     }
 
 }

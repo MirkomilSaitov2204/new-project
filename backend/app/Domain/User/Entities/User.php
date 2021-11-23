@@ -21,6 +21,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property  timestamp $create_at
  * @property  timestamp $updated_at
  *
+ * @author <mirkomilmirabdullaevich@gmail.com>
  */
 class User extends Authenticatable
 {
