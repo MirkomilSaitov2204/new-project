@@ -1,14 +1,5 @@
 <template>
-  <div class="home">
-    <ElRow :gutter="12">
-      <ElCol :md="4" :xl="4">Mirkomil Saitov Mirkomil Saitov Mirkomil Saitov</ElCol>
-      <ElCol :md="4" :xl="4">Mirkomil Saitov Mirkomil Saitov Mirkomil Saitov</ElCol>
-      <ElCol :md="4" :xl="4">Mirkomil Saitov Mirkomil Saitov Mirkomil Saitov</ElCol>
-      <ElCol :md="4" :xl="4">Mirkomil Saitov Mirkomil Saitov Mirkomil Saitov</ElCol>
-      <ElCol :md="4" :xl="4">Mirkomil Saitov Mirkomil Saitov Mirkomil Saitov</ElCol>
-      <ElCol :md="4" :xl="4">Mirkomil Saitov Mirkomil Saitov Mirkomil Saitov</ElCol>
-    </ElRow>
-  </div>
+  <div class="home"></div>
 </template>
 
 <script>
