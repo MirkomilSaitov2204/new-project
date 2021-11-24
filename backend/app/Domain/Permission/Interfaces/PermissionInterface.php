@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @interface PermissionInterface
- * @package Domain\Permission\Interfaces
+ * @package Domain\Action\Interfaces
  *
  *
  * @author Mirkomil Saitov <mirkomilmirabdullaevich@gmail.com>

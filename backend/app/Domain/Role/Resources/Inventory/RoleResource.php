@@ -1,10 +1,10 @@
 <?php
 
-namespace Domain\Permission\Resources\Inventory;
+namespace Domain\Role\Resources\Inventory;
 
 use Infrastructure\Interfaces\BaseResource;
 
-class PermissionResource extends BaseResource
+class RoleResource extends BaseResource
 {
 
     public function toArray($request)

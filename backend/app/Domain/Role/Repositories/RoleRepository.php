@@ -4,22 +4,20 @@
 namespace App\Domain\Role\Repositories;
 
 
-use App\Domain\Core\GlobalInterface;
 use App\Domain\Role\Interfaces\RoleInterface;
 use App\Domain\Role\Services\RoleService;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class RoleRepository
  * @package App\Domain\Role\Repositories
  * @implements RoleInterface
- * @implements GlobalInterFace
  * @service RoleService
  *
  * @author Mirkomil Saitov <mirkomilmirabdullaevich@mgial.com>
  *
  */
-class RoleRepository implements RoleInterface, GlobalInterface
+class RoleRepository implements RoleInterface
 {
 
     /**
@@ -42,7 +40,7 @@ class RoleRepository implements RoleInterface, GlobalInterface
      * @param  $data
      * @return mixed
      */
-    public function storeRole(array $data)
+    public function storeRole(array $data): Model
     {
         try {
             isset($data['is_active']) ? $data['is_active'] :  $data['is_active'] =false;
@@ -63,7 +61,7 @@ class RoleRepository implements RoleInterface, GlobalInterface
      * @param  $data
      * @return mixed
      */
-    public function updateRole(array $data, $name): bool
+    public function updateRole(array $data, string $name): bool
     {
         try {
             $role = $this->roleServices->roles()->where('name', $name)->first();
@@ -84,7 +82,7 @@ class RoleRepository implements RoleInterface, GlobalInterface
      * @param $name
      * @return mixed
      */
-    public function deleteRole($name)
+    public function deleteRole(string $name): Model
     {
         try {
             $role = $this->roleServices->roles()->where('name', $name)->first();

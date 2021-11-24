@@ -3,7 +3,7 @@
 namespace Interfaces\Http\Controllers\Api\User;
 
 use Application\Request\User\FilterRequest;
-use Domain\Permission\Resources\PermissionResourceCollection;
+use Domain\Permission\Resources\RoleResourceCollection;
 use Domain\User\Entities\User;
 use App\Interfaces\Http\Controllers\Api\BaseController;
 use Domain\User\Repositories\UserRepository;

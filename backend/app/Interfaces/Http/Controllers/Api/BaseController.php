@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Interfaces\Http\Controllers\Api;
+namespace Interfaces\Http\Controllers\Api;
 
 use Interfaces\Http\Controllers\Controller;
 use Interfaces\Http\Traits\Response;

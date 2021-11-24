@@ -8,7 +8,7 @@ use Spatie\Translatable\HasTranslations;
 /**
  * Class Role
  * @package App\Domain\Role\Entities
- * @package  \Spatie\Permission\Models\Role
+ * @package  \Spatie\Action\Models\Role
  * @package \Spatie\HasTransactions
  * @package SoftDeletes
  *
@@ -20,6 +20,7 @@ use Spatie\Translatable\HasTranslations;
  * @property string $guard_name
  * @property json $description
  *
+ * @copyright 2021.11.24
  */
 class Role extends \Spatie\Permission\Models\Role
 {
@@ -35,43 +36,4 @@ class Role extends \Spatie\Permission\Models\Role
      * @var string[]
      */
     public $translatable = ['description'];
-
-    /**
-     * @return $value
-     * @method capitalize Name
-     */
-//    public function getNameAttribute($value)
-//    {
-//        return ucfirst($value);
-//    }
-
-
-    /**
-     * Set the name.
-     *
-     * @param  string  $value
-     * @return void
-     */
-//    public function setNameAttribute($value)
-//    {
-//        $this->attributes['name'] = ucfirst($value);
-//    }
-
-    /**
-     * @param $query
-     * @return mixed
-     */
-    public function scopeActiveCount($query)
-    {
-        return $query->where('is_active', true)->where('name' ,'!=', 'superadmin')->count();
-    }
-
-    /**
-     * @param $query
-     * @return mixed
-     */
-    public function scopeInactiveCount($query)
-    {
-        return $query->where('is_active', false)->where('name' ,'!=', 'superadmin')->count();
-    }
 }

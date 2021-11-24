@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Infrastructure\Interfaces;
+namespace Infrastructure\Interfaces;
+
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 

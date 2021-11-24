@@ -7,8 +7,8 @@ use Domain\Permission\Services\PermissionService;
 use Domain\Permission\Interfaces\PermissionInterface;
 
 /**
- * @namespace Domain\Permission\Repositories
- * @model Permission
+ * @namespace Domain\Action\Repositories
+ * @model Action
  * @class PermissionRepository
  * @param $permissionServices
  *

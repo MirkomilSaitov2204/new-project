@@ -8,7 +8,7 @@ use Domain\Permission\Entities\Permission;
 
 /**
  * Class PermissionService
- * @package Domain\Permission\Services
+ * @package Domain\Action\Services
  *
  * @author Mirkomil Saitov <mirkomilmirabdullaevich@gmail.com>
  * @phone +9989032485863

@@ -10,6 +10,9 @@ interface Items
     //name
     const NAME = 'name';
 
+    //description
+    const DESCRIPTION = 'description';
+
     //emails
     const EMAIL      = 'email';
 

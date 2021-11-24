@@ -20,7 +20,7 @@ class CreateModelHasPermissionsTable extends Migration
             $table->foreignId('permission_id')
                 ->references('id')
                 ->on('permissions')
-                ->onDelete('cascade');
+                ->onDelete('CASCADE');
 
             $table->softDeletes();
             $table->timestamps();
@@ -34,6 +34,6 @@ class CreateModelHasPermissionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('permissions');
+        Schema::dropIfExists('model_has_permissions');
     }
 }

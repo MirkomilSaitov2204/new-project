@@ -4,7 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Infrastructure\Database\Seeds\PermissionTableSeeder;
-use Infrastructure\Database\Seeds\TestSeeder;
+use Infrastructure\Database\Seeds\RolePermissionTableSeeder;
+use Infrastructure\Database\Seeds\RoleTableSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,6 +18,8 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         $this->call(PermissionTableSeeder::class);
+        $this->call(RoleTableSeeder::class);
+        $this->call(RolePermissionTableSeeder::class);
 
     }
 }

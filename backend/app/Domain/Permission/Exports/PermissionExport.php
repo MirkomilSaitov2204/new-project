@@ -47,7 +47,7 @@ class PermissionExport implements FromCollection, ShouldAutoSize, WithHeadings, 
     {
         return [
             '#',
-            'Permission',
+            'Action',
             'Parent',
             'Description'
         ];

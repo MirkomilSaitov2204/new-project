@@ -3,9 +3,8 @@
 
 namespace App\Domain\Role\Services;
 
-use App\Domain\Core\GetOrderedDataService;
 use App\Domain\Role\Entities\Role;
-use App\Http\Requests\Action\RoleFilterRequest;
+use Application\Request\Role\FilterRequest;
 
 /**
  * Class RoleService
@@ -14,7 +13,7 @@ use App\Http\Requests\Action\RoleFilterRequest;
  * @author Mirkomil Saitov <mirkomilmirabdullaevich@gmail.com>
  * @phone +998903248563
  */
-class RoleService extends GetOrderedDataService
+class RoleService
 {
     protected $roles;
 
@@ -35,22 +34,23 @@ class RoleService extends GetOrderedDataService
         return $this->roles;
     }
 
+
     /**
-     * @method getRoleByName
-     * $param $name
-     * @return mixed
+     * @param string $data
+     * @return object
      */
-    public function getRoleByName($data): object
+    public function getRoleByName(string $data): object
     {
         return $this->roles()->with('permissions')->where('name', $data)->first();
     }
 
+
     /**
-     * @param RoleFilterRequest $request
+     * @param FilterRequest $request
      * @param $roles
-     * @return mixed
+     * @return object
      */
-    public function filter(RoleFilterRequest $request, $roles)
+    public function filter(FilterRequest $request, $roles): object
     {
         $roles = $request->name
             ? $roles->where('name', 'LIKE', '%'.$request->name.'%')
@@ -61,63 +61,5 @@ class RoleService extends GetOrderedDataService
             :$roles;
 
         return $roles;
-    }
-
-    /**
-     * @param RoleFilterRequest $request
-     * @return array
-     */
-    public function getSortFront(RoleFilterRequest $request): array
-    {
-        $order = $this->getSortOrder($request);
-
-        $sort = [
-            'key' => $this->getSortKey($request),
-            'order' => $order,
-            'order_reverse' => ($order == 'asc') ? 'desc' : 'asc'
-        ];
-        return $sort;
-    }
-
-    /**
-     * @param RoleFilterRequest $request
-     * @return string
-     */
-    private function getSortKey(RoleFilterRequest $request): string
-    {
-
-        $keys = ['id','created_at', 'name', 'updated_at'];
-        $key = $request->get('sort_key', 'id');
-        if (!in_array($key, $keys)) {
-            $key = 'id';
-        }
-        return $key;
-    }
-
-
-    /**
-     * @param RoleFilterRequest $request
-     * @return string
-     */
-    private function getSortOrder(RoleFilterRequest $request): string
-    {
-        $types = ['asc', 'desc'];
-        $type = $request->get('sort_order', 'desc');
-        if (!in_array($type, $types)) {
-            $type = 'desc';
-        }
-        return $type;
-    }
-
-    /**
-     * @param RoleFilterRequest $request
-     * @param $eventTypes
-     * @return mixed
-     */
-    public function sort(RoleFilterRequest $request, $eventTypes)
-    {
-        $order = $this->getSortOrder($request);
-        $key = $this->getSortKey($request);
-        return $this->getOrderedData($eventTypes, $key, $order);
     }
 }

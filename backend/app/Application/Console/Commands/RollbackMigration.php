@@ -19,7 +19,7 @@ class RollbackMigration extends Command
      *
      * @var string
      */
-    protected $description = 'Example: php artisan ';
+    protected $description = 'Rollback all database migrations';
 
     /**
      * Create a new command instance.

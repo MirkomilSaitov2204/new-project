@@ -12,6 +12,7 @@ class PermissionResource extends BaseResource
         return [
             self::ID         => $this->id,
             self::NAME       => $this->name,
+            self::DESCRIPTION=> $this->description,
             self::IS_ACTIVE  => $this->is_active ? true : false,
 
             'parent_id'      => $this->parent_id,

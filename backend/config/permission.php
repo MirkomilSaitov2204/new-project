@@ -7,10 +7,10 @@ return [
         /*
          * When using the "HasPermissions" trait from this package, we need to know which
          * Eloquent model should be used to retrieve your permissions. Of course, it
-         * is often just the "Permission" model but you may use whatever you like.
+         * is often just the "Action" model but you may use whatever you like.
          *
-         * The model you want to use as a Permission model needs to implement the
-         * `Spatie\Permission\Contracts\Permission` contract.
+         * The model you want to use as a Action model needs to implement the
+         * `Spatie\Action\Contracts\Action` contract.
          */
 
         'permission' => Spatie\Permission\Models\Permission::class,
@@ -21,7 +21,7 @@ return [
          * is often just the "Role" model but you may use whatever you like.
          *
          * The model you want to use as a Role model needs to implement the
-         * `Spatie\Permission\Contracts\Role` contract.
+         * `Spatie\Action\Contracts\Role` contract.
          */
 
         'role' => Spatie\Permission\Models\Role::class,

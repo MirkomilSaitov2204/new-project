@@ -1,31 +1,29 @@
 <?php
 
-namespace Interfaces\Http\Controllers\Api\Permission;
+namespace Interfaces\Http\Controllers\Api\Action;
 
+use App\Domain\Role\Repositories\RoleRepository;
+use App\Domain\Role\Services\RoleService;
+use Application\Request\Role\FilterRequest;
 use Illuminate\Http\JsonResponse;
-use Application\Request\Permission\StoreRequest;
-use Application\Request\Permission\UpdateRequest;
-use Domain\Permission\Services\PermissionService;
-use Application\Request\Permission\FilterRequest;
-use Domain\Permission\Resources\PermissionResource;
-use App\Interfaces\Http\Controllers\Api\BaseController;
-use Domain\Permission\Repositories\PermissionRepository;
-use Domain\Permission\Resources\PermissionResourceCollection;
+use Domain\Role\Resources\RoleResource;
+use Interfaces\Http\Controllers\Api\BaseController;
+use Domain\Role\Resources\RoleResourceCollection;
 
-class PermissionController extends BaseController
+class RoleController extends BaseController
 {
 
-    private $permissionRepositories;
-    private $permissionServices;
+    private $roleRepositories;
+    private $roleServices;
 
     /**
-     * @param PermissionRepository $permissionRepositories
-     * @param PermissionService $permissionServices
+     * @param RoleRepository $roleRepositories
+     * @param RoleService $roleServices
      */
-    public function __construct(PermissionRepository $permissionRepositories, PermissionService  $permissionServices)
+    public function __construct(RoleRepository $roleRepositories, RoleService $roleServices)
     {
-        $this->permissionRepositories   = $permissionRepositories;
-        $this->permissionServices       = $permissionServices;
+        $this->roleServices       = $roleServices;
+        $this->roleRepositories   = $roleRepositories;
 
 //        $this->middleware('permission:permissions', ['only' => ['index']]);
 //        $this->middleware('permission:permission_create', ['only' => ['create, store']]);
@@ -41,16 +39,16 @@ class PermissionController extends BaseController
     public function index(FilterRequest $request): JsonResponse
     {
         try {
-            $permissions = $this->permissionServices->permissions();
-            $permissions = $this->permissionServices->filter($request, $permissions);
-            $permissions = $permissions->paginate(self::PER_PAGE);
+            $roles = $this->roleServices->roles();
+            $roles = $this->roleServices->filter($request, $roles);
+            $roles = $roles->paginate(self::PER_PAGE);
 
             return $this->send([
-                'permissions' => new PermissionResourceCollection($permissions)
-            ], __('app.controller.permission.index.success'),self::SUCCESS_CODE);
+                'roles' => new RoleResourceCollection($roles)
+            ], __('app.controller.role.index.success'),self::SUCCESS_CODE);
 
         }catch (\JsonException $exception){
-            return $this->error($exception, __('app.controller.permission.index.error'),self::UNPROCC_CODE);
+            return $this->error($exception, __('app.controller.role.index.error'),self::UNPROCC_CODE);
         }
     }
 
@@ -64,7 +62,7 @@ class PermissionController extends BaseController
             $permission =  $this->permissionRepositories->storePermission($request->validated());
 
             return $this->send([
-                'permission' => new PermissionResource($permission)
+                'permission' => new RoleResource($permission)
             ],__('app.controller.permission.store.success'),self::SUCCESS_CODE);
         }catch (\JsonException $exception){
             return $this->error($exception, __('app.controller.permission.store.error'),self::UNPROCC_CODE);
