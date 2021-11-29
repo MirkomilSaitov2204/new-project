@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Domain\User\Interfaces;
+namespace Domain\User\Interfaces;
 
 use Illuminate\Database\Eloquent\Model;
+use Infrastructure\Core\BaseInterface;
 
 /**
  * @interface UserInterface
@@ -12,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  * @author Mirkomil Saitov <mirkomilmirabdullaevich@gmail.com>
  * @phone +998903248563
  */
-interface UserInterface
+interface UserInterface extends BaseInterface
 {
     /**
      * @param array $data

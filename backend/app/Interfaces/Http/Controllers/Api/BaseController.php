@@ -2,25 +2,11 @@
 
 namespace Interfaces\Http\Controllers\Api;
 
+use Infrastructure\Core\BaseInterface;
 use Interfaces\Http\Controllers\Controller;
 use Interfaces\Http\Traits\Response;
 
-class BaseController extends Controller
+class BaseController extends Controller implements BaseInterface
 {
     use Response;
-
-    // items per page
-    const PER_PAGE = 20;
-
-    //successfully
-    const SUCCESS_CODE = 200;
-
-    // un autharization
-    const UNAUTH_CODE = 201;
-
-    // Page not found
-    const NOT_FOUND_CODE = 404;
-
-    //Unprocessable Entity
-    const UNPROCC_CODE = 422;
 }

@@ -3,9 +3,16 @@
 namespace Domain\User\Repositories;
 
 use Domain\User\Services\UserService;
-use App\Domain\User\Interfaces\UserInterface;
 use Illuminate\Database\Eloquent\Model;
+use Domain\User\Interfaces\UserInterface;
 
+/**
+ * Class UserRepository
+ * @interface Domain\User\Interfaces\UserInterface
+ *
+ * @author <mirkomilmirabdullaevich@gmail.com>
+ * @copyright 2021.11.29
+ */
 class UserRepository implements UserInterface
 {
 
@@ -23,9 +30,15 @@ class UserRepository implements UserInterface
     public function storeUser(array $data): Model
     {
         try {
+            $user = $this->userServices->users()->create($data);
 
-        }catch (\Throwable $exception){
-            dd($exception);
+            if(isset($data['data']) && isset($data['data']['roles'])){
+                $user = $user->syncRoles($data['data']['roles']);
+            }
+            return  $user;
+
+        }catch (\Exception  $exception){
+            throw new \HttpException(self::SERVER_ERROR, $exception->getMessage());
         }
     }
 
@@ -37,8 +50,8 @@ class UserRepository implements UserInterface
     public function updateUser(array $data, $id): bool
     {
         try {
-        }catch (\Throwable $exception){
-            dd($exception);
+        }catch (\Exception  $exception){
+            throw new \HttpException(self::SERVER_ERROR, $exception->getMessage());
         }
     }
 

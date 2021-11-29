@@ -2,7 +2,7 @@
 
 namespace Domain\User\Resources;
 
-use App\Infrastructure\Interfaces\BaseResourceCollection;
+use Infrastructure\Interfaces\BaseResourceCollection;
 
 /**
  * @package Domain\User\Resources;
@@ -15,7 +15,7 @@ use App\Infrastructure\Interfaces\BaseResourceCollection;
 class UserResourceCollection extends BaseResourceCollection
 {
 
-    public $collects = 'App\Domain\User\Resources\PermissionResource';
+    public $collects = 'App\Domain\User\Resources\UserResource';
 
     /**
      * Transform the resource collection into an array.

@@ -28,9 +28,14 @@ class UserService
 
     public function filter(FilterRequest $request, $users)
     {
+        $users = $request->name
+            ? $users->where('name', 'LIKE', '%'.$request->name.'%')
+            :$users;
+
         $users = $request->email
             ? $users->where('email', 'LIKE', '%'.$request->email.'%')
             :$users;
+
         return $users;
     }
 
