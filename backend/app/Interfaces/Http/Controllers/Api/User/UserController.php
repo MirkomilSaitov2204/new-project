@@ -2,14 +2,12 @@
 
 namespace Interfaces\Http\Controllers\Api\User;
 
+use Illuminate\Http\JsonResponse;
+use Domain\User\Services\UserService;
 use Application\Request\User\FilterRequest;
-use Domain\Permission\Resources\RoleResourceCollection;
-use Domain\User\Entities\User;
-use App\Interfaces\Http\Controllers\Api\BaseController;
 use Domain\User\Repositories\UserRepository;
 use Domain\User\Resources\UserResourceCollection;
-use Domain\User\Services\UserService;
-use Illuminate\Http\JsonResponse;
+use Interfaces\Http\Controllers\Api\BaseController;
 
 /**
  * @package Interfaces\Http\Controllers\Api\User;

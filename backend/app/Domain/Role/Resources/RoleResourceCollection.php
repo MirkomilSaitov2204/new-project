@@ -4,6 +4,15 @@ namespace Domain\Role\Resources;
 
 use Infrastructure\Interfaces\BaseResourceCollection;
 
+/**
+ * @class RoleResourceCollection
+ * @package   Domain\Role\Resources
+ * @extends Infrastructure\Interfaces\BaseResourceCollection
+ *
+ * @author <mirkomilmirabdullaevich@gmail.com>
+ * @phone +998903248563
+ * @copyright 2021.11.27
+ */
 class RoleResourceCollection extends BaseResourceCollection
 {
 

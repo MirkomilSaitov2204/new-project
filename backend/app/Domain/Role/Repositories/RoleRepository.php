@@ -1,21 +1,21 @@
 <?php
 
 
-namespace App\Domain\Role\Repositories;
+namespace Domain\Role\Repositories;
 
 
-use App\Domain\Role\Interfaces\RoleInterface;
-use App\Domain\Role\Services\RoleService;
+use Domain\Role\Interfaces\RoleInterface;
+use Domain\Role\Services\RoleService;
 use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class RoleRepository
- * @package App\Domain\Role\Repositories
+ * @package Domain\Role\Repositories
  * @implements RoleInterface
  * @service RoleService
  *
  * @author Mirkomil Saitov <mirkomilmirabdullaevich@mgial.com>
- *
+ * @copyright 2021.11.26
  */
 class RoleRepository implements RoleInterface
 {
@@ -50,8 +50,8 @@ class RoleRepository implements RoleInterface
                 $role = $role->syncPermissions($data['permissions']);
             }
             return $role;
-        }catch (\Throwable $exception){
-            dd($exception);
+        }catch (\Exception  $exception){
+            throw new \HttpException(500, $exception->getMessage());
         }
     }
 
@@ -73,8 +73,8 @@ class RoleRepository implements RoleInterface
                 }
                 return $role->update($data);
             }
-        }catch (\Throwable $exception){
-            dd($exception);
+        }catch (\Exception  $exception){
+            throw new \HttpException(500, $exception->getMessage());
         }
     }
 
@@ -90,8 +90,8 @@ class RoleRepository implements RoleInterface
                 $role = $role->delete();
                 return $role;
             }
-        }catch (\Throwable $exception){
-            dd($exception);
+        }catch (\Exception  $exception){
+            throw new \HttpException(500, $exception->getMessage());
         }
     }
 

@@ -2,14 +2,20 @@
 
 namespace Interfaces\Http\Controllers\Api\Action;
 
-use App\Domain\Role\Repositories\RoleRepository;
-use App\Domain\Role\Services\RoleService;
-use Application\Request\Role\FilterRequest;
 use Illuminate\Http\JsonResponse;
+use Domain\Role\Services\RoleService;
 use Domain\Role\Resources\RoleResource;
-use Interfaces\Http\Controllers\Api\BaseController;
+use Application\Request\Role\FilterRequest;
+use Domain\Role\Repositories\RoleRepository;
 use Domain\Role\Resources\RoleResourceCollection;
+use Interfaces\Http\Controllers\Api\BaseController;
 
+/**
+ * @class RoleController
+ *
+ * @author <mirkomilmirabdullaevich@gmail.com>
+ * @copyright 2021.11.26
+ */
 class RoleController extends BaseController
 {
 

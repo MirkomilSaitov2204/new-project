@@ -1,15 +1,17 @@
 <?php
 
 
-namespace App\Domain\Role\Interfaces;
+namespace Domain\Role\Interfaces;
 
 use Illuminate\Database\Eloquent\Model;
 
 /**
  * Interface RoleInterface
- * @package App\Domain\Role\Interfaces
+ * @package Domain\Role\Interfaces
  *
  * @author Mirkomil Saitov <mirkomilmirabdullaevich@gmail.com>
+ * @phone +998903248563
+ * @copyright 2021.11.26
  */
 interface RoleInterface
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Role\Entities;
+namespace Domain\Role\Entities;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Translatable\HasTranslations;

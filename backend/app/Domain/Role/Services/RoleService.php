@@ -1,17 +1,19 @@
 <?php
 
 
-namespace App\Domain\Role\Services;
+namespace Domain\Role\Services;
 
-use App\Domain\Role\Entities\Role;
+use Domain\Role\Entities\Role;
 use Application\Request\Role\FilterRequest;
 
 /**
  * Class RoleService
- * @package App\Domain\Role\Services
+ * @package Domain\Role\Services
  *
  * @author Mirkomil Saitov <mirkomilmirabdullaevich@gmail.com>
  * @phone +998903248563
+ *
+ * @copyright 2021.11.26
  */
 class RoleService
 {

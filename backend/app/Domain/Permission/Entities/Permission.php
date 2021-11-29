@@ -9,7 +9,7 @@ use Spatie\Translatable\HasTranslations;
 
 /**
  * Class User
- * @package App\Domain\User\Entities
+ * @package Domain\User\Entities
  * @package \Spatie\HasTransactions
  * @package SoftDeletes
  *
